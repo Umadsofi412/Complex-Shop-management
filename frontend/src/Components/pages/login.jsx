@@ -4,15 +4,18 @@ import { useNavigate } from "react-router-dom"
 const Login = () => {
     const[email, setEmail] = useState('');
     const[password,setPassword] = useState('');
+    const [error, setError] = useState(null)
     const navigate = useNavigate();
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
-            const response = await axios.post('https://localhost:5000/api/auth/login', {email, password});
+            const response = await axios.post('http://localhost:5000/api/auth/login',
+             {email, password});
             localStorage.setItem('token', response.data.token);
-            navigate.push('/');
+            navigate('/');
         }catch(error){
+            setError('Invalid email or password');
             console.error('Error:', error);
         }
     };
@@ -31,6 +34,7 @@ const Login = () => {
                 </label>
             </div>
             <button type="submit">Login</button>
+            {error && <p>{error}</p>}
         </form>
     )}
 

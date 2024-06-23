@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [error,setError] = useState('')
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -13,11 +14,12 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const repsonse = await axios.post('https://localhost:5000/api/auth/signup', {username, email, password});
-            localStorage.setItem('token',repsonse.data.token);
-            navigate.push('/');
+            const response = await axios.post('http://localhost:5000/api/auth/signup', {username, email, password});
+            localStorage.setItem('token',response.data.token);
+            navigate('/login');
         }catch(error){
             console.error('Error:',error);
+            setError(error.response ? error.response.data.message : 'Network Error')
         }
     };
     return(
@@ -41,7 +43,7 @@ const Signup = () => {
                 </label>
             </div>
             <button type="submit">Signup</button>
-            
+            {error && <p style={{color:'red'}}>{error}</p>}
         </form>
     ) 
  }

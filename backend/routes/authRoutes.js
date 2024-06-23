@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require('../models/user');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 require('dotenv').config();
@@ -9,28 +9,30 @@ const router = express.Router()
 router.post('/signup', async(req,res)=> {
     const{username, email, password} = req.body;
     try{
-        const userExists = await user.findOne({email});
+        const userExists = await User.findOne({email});
         if(userExists){
-            return res.status(404).json({message:"User already exits"});
+            return res.status(400).json({message:"User already exits"});
         }
-        const user = await User.create({username,email, password, })
+        const user = await User.create({username, email, password})
         const token = jwt.sign({id:user._id}, process.env.JWT_SECRET,{
             expiresIn: '1h'
         });
         res.status(201).json({token})
     }catch(error){
-        res.status(500).json({message: "Server Error"})
+        res.status(500).json({message: "Server Error", error: error.message})
     }
 
 });
+
+
 router.post("/login", async (req, res) => {
   const {email, password } = req.body;
   try {
-    const user = await user.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
-    const isMatch = await user.matchPassword({password });
+    const isMatch = await user.matchPassword(password);
      if (!isMatch) {
        return res.status(400).json({ message: "Invalid Credentials" });
      }
@@ -39,7 +41,8 @@ router.post("/login", async (req, res) => {
     });
     res.status(201).json({ token });
   } catch (error) {
-    res.status(500).json({ message: "Server Error" });
+    console.error('Login Error', error);
+    res.status(500).json({ message: "Server Error" , error: error.message});
   }
 });
  
