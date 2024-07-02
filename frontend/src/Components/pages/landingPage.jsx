@@ -7,8 +7,7 @@ import { BiBorderAll } from "react-icons/bi";
 import { AiFillBook } from "react-icons/ai";
 import { AiFillFolder } from "react-icons/ai";
 import { VscPieChart } from "react-icons/vsc";
-
-
+import Woman from '../../images/woman.png'
 const LandingPage = () => {
     return (
         <div>
@@ -120,7 +119,24 @@ const LandingPage = () => {
             </section>
             <section className="call-for-action">
                 <div className="action-main-container">
-                    <div>
+                    <div className="call-content">
+                        <div className="heading-subheading">
+                            <h2>Try it for<br/>free</h2>
+                            <p>Clarity gives you the blocks &
+                             components you need to create a
+                              truly professional website, landing 
+                             page or admin panel for your SaaS.</p>
+                        </div>
+                        <div className="buttons">
+                            <Link className="btn5" to="/signup">Get Started</Link>
+                            <Link className="btn6" to="/login">Login</Link>
+                        </div>
+                    </div>
+                    <div className="img">
+                        <span className="circle"></span>
+                        <span className="rectangle"></span>
+                        <img src={Woman} className="img-1" alt="woman-img" />
+                        
 
                     </div>
                 </div>
