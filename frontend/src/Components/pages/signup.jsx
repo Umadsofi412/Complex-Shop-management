@@ -7,6 +7,7 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('')
     const [password, setPassword] = useState('');
+    const [showPassword,setShowPassword] = useState(false);
     const navigate = useNavigate();
 
 
@@ -22,6 +23,9 @@ const Signup = () => {
             setError(error.response ? error.response.data.message : 'Network Error')
         }
     };
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
     return (
         <form className="Signup" onSubmit={handleSubmit}>
             <div className="main-signup">
@@ -42,11 +46,15 @@ const Signup = () => {
                     </div>
                     <div className="display-content">
                         <label htmlFor="Password">
-                            <input type="password" placeholder="Create Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type={showPassword ? "text":'password'} placeholder="Create Password" value={password} onChange={(e) => setPassword(e.target.value)} ></input>
+                            <button type="button" onClick={togglePasswordVisibility}>
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
                         </label>
                     </div>
                     <button type="submit">Signup</button>
-                    <p>Already have an account? <a href="#">Sigin</a> </p>
+                    <p>Already have an account? <a href='/login'>SignIn</a></p>
+                    
                 </div>
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}

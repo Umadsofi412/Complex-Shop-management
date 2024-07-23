@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFastBackward } from "react-icons/fa";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import { TbAntennaBars5 } from "react-icons/tb";
 import { BiBorderAll } from "react-icons/bi";
@@ -129,20 +128,44 @@ const LandingPage = () => {
                         </div>
                         <div className="buttons">
                             <Link className="btn5" to="/signup">Get Started</Link>
-                            <Link className="btn6" to="/login">Login</Link>
+                            <Link className="btn6" to="/login">Explore All Blocks</Link>
                         </div>
                     </div>
                     <div className="img">
+                       
                         <span className="circle"></span>
                         <span className="rectangle"></span>
+                        <span className="rectangle-1"></span>
                         <img src={Woman} className="img-1" alt="woman-img" />
-                        
-
+                        <span className="polygon"></span>
+                        <span className="text">
+                            <p>Hey, it’s free for you!</p>
+                        </span>    
                     </div>
                 </div>
             </section>
             <footer className="footer">
+            <div className="footer-container">
+                <div className="footer-section-1">
+                        <div className="footer-section-content">
+                            <h2>Newsletter</h2>
+                            <p>Subscribe to our newsletter to get the latest news and updates</p>
+                        </div>
+                        <div className="footer-section-button">
+                            <input type="email" placeholder="Enter your email" />
+                            <button>Submit</button>
+                        </div>
+                </div>
+                <div className="footer-section-2">
 
+                </div>
+                <div className="footer-section-3">
+
+                </div>
+                <div className="footer-section-4">
+
+                 </div>
+            </div>
             </footer>
 
 

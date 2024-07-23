@@ -37,9 +37,10 @@ body{
   height:300px ;
   background-color: #ffff;
   border-radius: 10px;
+  position: relative;
 }
 label{
-  width: 100%;
+  /* width: 100%; */
 }
 .display-content{
   display: flex;
@@ -80,14 +81,34 @@ input{
   background-color: #1d4ed8;
 }
 input[type = 'text']{
-  color: #111
+  color: #111;
 }
 input[type='email'] {
-  color: #111
+  color: #111;
 }
 input[type='password'] {
-  color: #111
+  color: #111;
+
 }
+.form-display a{
+  color: #2563eb;
+  text-decoration: none;
+}
+.form-display p {
+  color: #64748b;
+  
+}
+.display-content  button {
+  position: absolute;
+  top: 49%;
+  transform: translateY(-50%);
+  border: none;
+  left: 82%;
+  background: none;
+  cursor: pointer;
+  /* transform: translate(30,-20); */
+}
+
 
 
                                     /* Login Form */
@@ -145,9 +166,27 @@ input[type='password'] {
   background-color: #f8fafc;
 
 }
+.login-Password button {
+  position: absolute;
+  top: 51%;
+  transform: translateY(51%);
+  border: none;
+  left: 77%;
+  background: none;
+  cursor: pointer;
+}
 
-
-
+.form-new-account p{
+  margin-top: 6rem;
+  margin-left: 5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #64748b;
+}
+.form-new-account p a{
+  color: #2563eb;
+  text-decoration: none;
+}
 .login-display{
   background-color: #2563eb;
   width: 45%;
@@ -256,9 +295,9 @@ input[type='password'] {
   
   /* justify-content: space-between; */
   /* align-items: center; */
-  padding: 1rem 2rem;
+  padding: 10px;
   background-color: #ffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -294,13 +333,13 @@ input[type='password'] {
 }
 .nav-btn1{
   background-color: #1D4ED8;
-  padding: 9px;
-  border-radius: 5px;
+  padding: 4px;
+  border-radius: 3px;
   color: #fff;
   text-decoration: none;
   cursor: pointer;
   width: 114px;
-  height: 44px;
+  height: 30px;
   text-align: center;
 }
 .nav-btn1:hover{
@@ -310,13 +349,13 @@ input[type='password'] {
 }
 .nav-btn2{
   background-color: #1D4ED8;
-  padding: 9px;
+  padding: 4px;
   border-radius: 5px;
   color: #fff;
   text-decoration: none;
   cursor: pointer;
   width: 234px;
-  height: 44px;
+  height: 30px;
   text-align: center;
 }
 .nav-btn2:hover{
@@ -493,12 +532,9 @@ height: 30px;
 }
 .footer{
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-color: #0F172A;
-  color: #ffff;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 .action-main-container{
   display: flex;
@@ -515,6 +551,7 @@ height: 30px;
 .heading-subheading > h2{
   font-size: 3rem;
   font-weight: 600;
+  line-height: 3rem;
   font-family: "Poppins",sans-serif;
   color: #0F172A;
 }
@@ -547,9 +584,276 @@ height: 30px;
     background-color: #FFA8D2;
     position: absolute;
     z-index: 1;
-    opacity: 80%;
+    /* opacity: 80%; */
     bottom: 0;
     transform: translate(60px, 55px) rotate(-33.9deg);
-    filter: blur(38px);
+    filter: blur(35px);
   }
+    .rectangle-1{
+      width: 140px;
+      height: 196px;
+      background-color: #F5FFB6;
+      position: absolute;
+      z-index: 1;
+      /* opacity: 80%; */
+      bottom: 0;
+      transform: translate(150%, 55px) rotate(33.9deg);
+      filter: blur(35px);
+    }
 
+.polygon{
+  width: 22px;
+  height: 16px;
+  background-color: #fff;
+  /* position: absolute;
+  z-index: 1; */
+  border-radius : 4px;
+  /* opacity: 80%; */
+  /* bottom: 0; */
+  transform: translate(-210px, 120px) rotate(147deg);
+  /* filter: blur(35px); */
+  /* clip-path: polygon(100% 40%, 50% 50%, 100% 100%); */
+
+}
+.text {
+  width: 171.04px;
+  height: 49.96px;
+  background-color: #fff;
+  border-radius: 13px;
+  transform: translate(-200%, 78px) rotate(5.81deg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+.text > p{
+  font-size: 1rem;
+  font-family: "Poppins",sans-serif;
+  color: #0F172A;
+  padding: 0.25rem;
+  line-height: 1.2rem;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+
+}
+.buttons{
+  display: flex;  
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.btn5{
+  background-color: #1D4ED8;
+  border-radius: 50px;
+  padding: 0.8rem;
+  width: 208px;
+  height: 55px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  /* align-items: center; */
+  text-align: center;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif; 
+}
+.btn6{
+    background-color: none;
+      border-radius: 50px;
+      padding: 0.8rem;
+      width: 208px;
+      height: 55px;
+      color: #111;
+      text-decoration: none;
+      cursor: pointer;
+      /* align-items: center; */
+      text-align: center;
+      border: 2px solid #0F172A;
+      font-weight: 400;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: "Poppins", sans-serif;
+}
+
+        /* footer */
+.footer-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+.footer-section-1{
+    background-color: #fff;
+    width: 1000px;
+    height: 90px;
+    display: flex;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    /* position: absolute; */
+    justify-content: space-between;
+}
+.footer-section-content{
+  display: flex;
+  color: #111;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 2rem;
+}
+.footer-section-content > h2{
+  font-size: 1.5rem;
+  font-family: "Poppins",sans-serif;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+.footer-section-content > p{
+  font-size: 1rem;
+  font-family: "Poppins",sans-serif;
+  color: #475569;
+}
+.footer-section-button{
+  display: flex;
+  align-items: center;
+  width: 457px;
+  height: 48px;
+  margin: 1rem;
+  background-color: #2563eb;
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-section-button > input{
+  font-size: 1rem;
+  font-family: "Poppins",sans-serif;
+  background-color: #2563eb;
+  width: 80%;
+  height: 30px;
+  border: none;
+  text-align:left;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.footer-section-button > button{
+  background-color: #1d4ed8;
+  padding: 0.5rem;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.DashboardForm{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+.adminDashboardForm{
+
+}
+.adminDashboardForm > h2{
+  font-size: 2rem;
+  font-family: "Poppins",sans-serif;
+  color: #0F172A;
+  background-color: #475569;
+  padding: 2rem;
+  line-height: 10rem;
+  /* text-align: center; */
+  font-weight: 600;
+}
+
+.DashboardForm >h3{
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-family: "Poppins",sans-serif;
+  color: #111;
+  top: 0;
+}
+.inputData{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  
+}
+.inputData > input[type = "text"]{
+  width: 20%;
+  border: 1px solid #111;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+.DashboardForm >textarea{
+  width: 42%;
+  height: 300px;
+  border: none;
+  border-radius: 5px;
+  margin-left:1rem;
+  border: 1px solid #111;
+}
+.inputData > input[type = "number"]{
+  width: 20%;
+  border: 1px solid #111;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #111;
+}
+.DashboardForm > button{
+  width: 20%;
+  height: 40px;
+  background-color: #1d4ed8;
+  color: #ffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.DashboardForm > button:hover{
+  background-color: #2563eb;
+}
+.ManagedShops{
+  display: flex;
+  flex-direction: column ;
+  gap: 1rem;
+  padding:4rem;
+  margin-top: 2rem;
+  background-color: #64748b;
+}
+.shopsComtainer{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-direction: row;
+  gap: 1rem;
+}
+.shopsAdmin{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.2rem;
+  background-color: #ffff;
+  border-radius: 5px;
+  width: 300px;
+  height: 200px;
+}
+.shopsAdmin > h4{
+  font-size: 1.5rem;
+  font-family: "Poppins",sans-serif;
+  color: #111;
+  text-align: center;
+}
+.shopsAdmin > button{
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  font-family: "Poppins",sans-serif;
+  color: #fff;
+  text-align: center;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 2rem;
+  width: 30%;
+  transform: translateX(100px);
+}
+.shopsAdmin > button:hover{
+  background-color: #1d4ed8;
+}

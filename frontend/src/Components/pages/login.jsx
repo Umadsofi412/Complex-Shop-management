@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from '../context/authContext';
+import { jwtDecode } from 'jwt-decode';
 const Login = () => {
     const[email, setEmail] = useState('');
     const[password,setPassword] = useState('');
+    const[showPassword, setShowPassword] =useState(false);
     const [error, setError] = useState(null)
+    const {setUser, setIsAdmin} = useContext(AuthContext)
     const navigate = useNavigate();
 
     const handleSubmit = async(e) =>{
@@ -13,13 +16,29 @@ const Login = () => {
         try{
             const response = await axios.post('http://localhost:5000/api/auth/login',
              {email, password});
-            localStorage.setItem('token', response.data.token);
-            navigate('/');
+             const {token} = response.data
+            localStorage.setItem('token', token);
+            setUser(response.data.user)
+            const decoded = jwtDecode(token)
+            setIsAdmin(decoded.isAdmin)
+            const userResponse = await axios.get('http://localhost:5000/api/auth/me', {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setUser(userResponse.data)
+            if (decoded.isAdmin) {
+                navigate('/admin');
+            } else {
+                navigate('/shops');
+            }
         }catch(error){
             setError('Invalid email or password');
             console.error('Error:', error);
         }
     };
+
+    const handleSubmitToggel = () => {
+        setShowPassword(!showPassword);
+    }
     return(
         <form className='Login-form' onSubmit={handleSubmit}>
             <div className='login-page'>
@@ -35,14 +54,19 @@ const Login = () => {
                     <input type="Email" className='input-field' value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
             </div>
-            <div>
+            <div className='login-Password'>
                 <label htmlFor="Password">
                     Password
-                            <input type="password" className='input-field' value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type={showPassword? 'text':'password'} className='input-field' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button type="button" onClick={handleSubmitToggel}>{showPassword?"Hide":"Show"}</button>
+
                 </label>
             </div>
             </div>
+            <div className='form-new-account'>
             <button className='login-button' type="submit">Login</button>
+            <p>Don't have an account? <a href='/signup'>Create free Account</a></p>
+            </div>
             </div>
             <div className='login-display'>
                 <span className='top-design'></span>
