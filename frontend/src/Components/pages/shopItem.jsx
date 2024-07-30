@@ -16,16 +16,22 @@ const ShopItem = ({ shop }) => {
     };
 
     return (
-        <div>
+        <div className='shopList'>
             <h3>{shop.name}</h3>
             <p>{shop.description}</p>
-            <p>Price: ${shop.price}</p>
+
+        <div className='shopPriceBtn'>
+           
             {shop.isAvailable ? (
+                <>
                 <button onClick={handleBuy}>Buy</button>
+                 <p>Rs: ₹{shop.price}</p>
+                </>
             ) : (
                 
-                <p>Sold</p>
+                <p className='boldSold'>Sold</p>
             )}
+            </div>
         </div>
     );
 };

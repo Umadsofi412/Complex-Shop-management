@@ -1,6 +1,6 @@
 // MainLayout.jsx
 import React from 'react';
-import LogoutButton from '../Logout';
+import LogoutButton from '../logout';
 
 const MainLayout = ({ children }) => {
     return (

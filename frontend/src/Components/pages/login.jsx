@@ -1,15 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from "js-cookie"
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/authContext';
 import { jwtDecode } from 'jwt-decode';
-const Login = () => {
+import { useDispatch } from 'react-redux';
+import { setAuthToken } from '../../redux/authSlice';
+const Login = ({setPage}) => {
     const[email, setEmail] = useState('');
     const[password,setPassword] = useState('');
     const[showPassword, setShowPassword] =useState(false);
     const [error, setError] = useState(null)
     const {setUser, setIsAdmin} = useContext(AuthContext)
     const navigate = useNavigate();
+    const dispatch = useDispatch(); 
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -17,19 +21,25 @@ const Login = () => {
             const response = await axios.post('http://localhost:5000/api/auth/login',
              {email, password});
              const {token} = response.data
-            localStorage.setItem('token', token);
-            setUser(response.data.user)
+            //  Cookies.set('token',token)
+            dispatch(setAuthToken(token))
             const decoded = jwtDecode(token)
-            setIsAdmin(decoded.isAdmin)
-            const userResponse = await axios.get('http://localhost:5000/api/auth/me', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            setUser(userResponse.data)
+            // setIsAdmin(decoded.isAdmin)
+            // const userResponse = await axios.get('http://localhost:5000/api/auth/me', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            // setUser(userResponse.data)
+            // if (decoded.isAdmin) {
+            //     navigate('/admin');
+            // } else {
+            //     navigate('/shops');
+            // }
             if (decoded.isAdmin) {
                 navigate('/admin');
             } else {
-                navigate('/shops');
+                navigate('/');
             }
+            
         }catch(error){
             setError('Invalid email or password');
             console.error('Error:', error);
@@ -39,6 +49,9 @@ const Login = () => {
     const handleSubmitToggel = () => {
         setShowPassword(!showPassword);
     }
+    useEffect(() => {
+        setPage('login');
+    }, [setPage]);
     return(
         <form className='Login-form' onSubmit={handleSubmit}>
             <div className='login-page'>
@@ -57,7 +70,7 @@ const Login = () => {
             <div className='login-Password'>
                 <label htmlFor="Password">
                     Password
-                            <input type={showPassword? 'text':'password'} className='input-field' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type={showPassword? 'text':'password'} className='input-field' value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button type="button" onClick={handleSubmitToggel}>{showPassword?"Hide":"Show"}</button>
 
                 </label>

@@ -7,10 +7,13 @@ import { AiFillBook } from "react-icons/ai";
 import { AiFillFolder } from "react-icons/ai";
 import { VscPieChart } from "react-icons/vsc";
 import Woman from '../../images/woman.png'
+import { useSelector } from "react-redux";
 const LandingPage = () => {
+    const { user, isAdmin } = useSelector((state) => state.auth);
+
     return (
         <div>
-            <header className="header-container">
+            {/* <header className="header-container">
                 <div className="nav-container">
                     <nav className="nav-links">
                         <a href="">Home</a>
@@ -23,7 +26,7 @@ const LandingPage = () => {
                         <Link className="nav-btn2" to="/signup">Create Your Free Account</Link>
                     </div>
                 </div>
-            </header>
+            </header> */}
             <section className="hero-section">
                 <div className="hero-container">
                     <div className="hero-heading">
@@ -36,8 +39,8 @@ const LandingPage = () => {
                             managing your complex has never been easier.</p>
                     </div>
                     <div className="hero-btn">
-                        <Link className="btn3" to="/signup">Get Started</Link>
-                        <Link className="btn4" to="/login">Login</Link>
+                        {!user ? <Link className="btn3" to="/signup">Get Started</Link> : <Link className="btn3" to="/shops">Go to Shops</Link>}
+                        {!user ?<Link className="btn4" to="/login">Login</Link>:''}
                     </div>
                 </div>
             </section>

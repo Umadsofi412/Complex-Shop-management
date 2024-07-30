@@ -1,12 +1,15 @@
 // frontend/src/components/Admin.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Admin = () => {
+       
     const [shops, setShops] = useState([]);
     const [formData, setFormData] = useState({ name: '', description: '', price: '' });
-
-    
+  
+    useEffect(() =>{},[])
         const fetchShops = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/shops');
@@ -21,7 +24,7 @@ const Admin = () => {
             fetchShops()
         
         },[])
-
+   
     const handleAddShop = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -42,7 +45,7 @@ const Admin = () => {
             await axios.delete(`http://localhost:5000/api/shops/${id}`,{
                 headers: { Authorization: `Bearer ${token}` },
             });
-            setShops(shops.filter(shop => shop._id !== id));
+            setShops(prevshops => prevshops.filter(shop => shop._id !== id));
             fetchShops()
         } catch (error) {
             console.error('Error deleting shop:', error);

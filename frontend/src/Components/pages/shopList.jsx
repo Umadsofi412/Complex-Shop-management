@@ -18,14 +18,24 @@ const ShopList = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Available Shops for Sale</h2>
-            <div>
+        
+        <div className='shopListItem'>
+            <div className='shopListContainer'>
+            <div className='shopListHeader'>
+            <h2>Buy your Shop and begin the journey of your own Bussiness</h2>
+            <div className='shopCurve'></div>
+            </div>
+            
+            <div className='shopCards'>
                 {shops.map((shop) => (
                     <ShopItem key={shop._id} shop={shop} />
                 ))}
             </div>
+            </div>
+           
+           
         </div>
+        
     );
 };
 
