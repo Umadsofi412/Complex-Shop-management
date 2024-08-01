@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", protect, async (req, res) => {
+router.post("/", async (req, res) => {
   const { name, description, price } = req.body;
   try {
     const shop = new Shop({ name, description, price });
@@ -24,7 +24,23 @@ router.post("/", protect, async (req, res) => {
   }
 });
 
+router.put('/:id' ,async (req,res) => {
+   try {
+        const shop = await Shop.findById(req.params.id);
+        if (!shop) {
+            return res.status(404).json({ message: 'Shop not found' });
+        }
 
+        shop.name = req.body.name;
+        shop.description = req.body.description;
+        shop.price = req.body.price;
+        shop.isAvailable = true;
+        const updatedShop = await shop.save();
+        res.json(updatedShop);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+})
 router.delete('/:id', async (req, res) => {
 
   try {

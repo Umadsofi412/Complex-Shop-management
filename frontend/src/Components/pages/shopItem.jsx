@@ -20,13 +20,13 @@ const ShopItem = ({ shop }) => {
             <h3>{shop.name}</h3>
             <p>{shop.description}</p>
 
-        <div className='shopPriceBtn'>
+        <div className='shopPrice'>
            
             {shop.isAvailable ? (
-                <>
+                <div className='shopBtnsTxt'>
                 <button onClick={handleBuy}>Buy</button>
                  <p>Rs: ₹{shop.price}</p>
-                </>
+                </div>
             ) : (
                 
                 <p className='boldSold'>Sold</p>

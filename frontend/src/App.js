@@ -57,7 +57,7 @@ const App = () => {
                   Logout
                 </button>
                 {isAdmin && (
-                  <Link className="nav-btn2" to="/admin">
+                  <Link className="nav-btn1" to="/admin">
                     Admin
                   </Link>
                 )}
